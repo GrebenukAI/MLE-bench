@@ -1,0 +1,41 @@
+# MLE-bench Data Integrity Checksums
+# Store Sales - Time Series Forecasting
+# Generated: 2025-09-28
+
+# Original Kaggle competition files (raw/)
+raw:
+  train.csv: b84434bf8eede5345ec04e41dfe9d86e
+  test.csv: c83f62c8bce75a3cb0a246b01fe29256
+  sample_submission.csv: 28b7578c90501ff04c3467e76c2b2e3c
+  stores.csv: 8414fbafbc7dcb33498d1a3c0cf2fda6
+  oil.csv: 4767ef51a4ff57e65538afa9b1c5e1b5
+  holidays_events.csv: 6a71fe2fb783e8e6758a53d417b75872
+  transactions.csv: db5fa89caf46386aba0ed5bad7a403c7
+
+# MLE-bench processed files will be generated dynamically
+# These checksums ensure data integrity across runs
+# The prepare.py script creates deterministic splits using:
+#   - 90/10 temporal split
+#   - No random sampling (strict date-based)
+#   - Supplementary files copied unchanged
+
+metadata:
+  mle_bench_version: "1.0"
+  competition: "store-sales-time-series-forecasting"
+  platform: "kaggle"
+  creation_date: "2025-09-28"
+
+data_characteristics:
+  total_rows: 3000888
+  date_range: "2013-01-01 to 2017-08-15"
+  n_stores: 54
+  n_families: 33
+  n_unique_dates: 1684
+
+split_info:
+  method: "temporal"
+  train_dates: 1515  # 90% of dates
+  test_dates: 169    # 10% of dates
+  train_rows: 2699730
+  test_rows: 301158
+  leakage_prevention: "strict temporal ordering"

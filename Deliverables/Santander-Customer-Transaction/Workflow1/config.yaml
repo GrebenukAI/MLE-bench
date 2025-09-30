@@ -1,0 +1,62 @@
+competition_id: santander-customer-transaction-prediction
+title: "Santander Customer Transaction Prediction"
+platform: kaggle
+type: binary-classification
+difficulty: medium
+description: "Identify which customers will make a specific transaction in the future"
+tags:
+  - binary-classification
+  - tabular-data
+  - customer-analytics
+  - financial-services
+  - imbalanced-data
+
+# Data characteristics
+data:
+  train_size: 180000  # After 90/10 split from original 200k
+  test_size: 20000
+  n_features: 200
+  feature_prefix: "var_"
+  target_column: "target"
+  id_column: "ID_code"
+  class_distribution:
+    class_0: 0.8995  # ~90% negative
+    class_1: 0.1005  # ~10% positive
+
+# Evaluation metric
+metric:
+  name: AUC-ROC
+  description: "Area Under the Receiver Operating Characteristic Curve"
+  minimize: false
+  range: [0.5, 1.0]
+  random_baseline: 0.5
+  typical_scores:
+    baseline: 0.65  # Naive approaches
+    competitive: 0.90  # Good feature engineering
+    top: 0.92  # Advanced techniques
+
+# Task characteristics
+task:
+  prediction_target: "target"
+  prediction_type: binary
+  class_imbalance: severe
+  anonymized_features: true
+  feature_engineering_important: true
+  key_challenges:
+    - Severe class imbalance (10% positive)
+    - Anonymized features (no domain knowledge)
+    - High feature dimensionality (200 features)
+    - Need for sophisticated feature engineering
+
+# MLE-bench metadata
+mle_bench:
+  version: 1.0
+  created: "2025-09-28"
+  author: "Arthur Grebenuk"
+  validation:
+    split_type: "stratified_random"
+    split_ratio: 0.9
+    stratify_by: "target"
+    random_seed: 42
+    data_source: "USES ONLY train.csv WITH REAL LABELS"
+    no_fabrication: true

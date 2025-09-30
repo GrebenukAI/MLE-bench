@@ -1,0 +1,67 @@
+competition_id: store-sales-time-series-forecasting
+title: "Store Sales - Time Series Forecasting"
+platform: kaggle
+type: time-series-forecasting
+difficulty: medium
+description: "Forecast sales for thousands of product families sold at Favorita stores in Ecuador"
+tags:
+  - time-series
+  - retail
+  - forecasting
+  - regression
+  - tabular-data
+
+# Data characteristics
+data:
+  train_size: 3000888
+  test_size: 301158  # After 90/10 temporal split
+  n_features: 5
+  n_stores: 54
+  n_families: 33
+  n_dates: 1684
+  date_range: "2013-01-01 to 2017-08-15"
+  supplementary_files:
+    - stores.csv
+    - oil.csv
+    - holidays_events.csv
+    - transactions.csv
+
+# Evaluation metric
+metric:
+  name: RMSLE
+  description: "Root Mean Squared Logarithmic Error"
+  formula: "sqrt(mean((log(predicted + 1) - log(actual + 1))^2))"
+  minimize: true
+  range: [0, inf]
+  typical_scores:
+    baseline: 0.8  # Simple historical average
+    competitive: 0.5  # Good ML approach
+    top: 0.4  # Sophisticated ensemble
+
+# Task characteristics
+task:
+  prediction_target: sales
+  prediction_type: continuous
+  time_series: true
+  hierarchical: true  # Store × Family combinations
+  seasonality:
+    - daily
+    - weekly
+    - monthly
+    - yearly
+  external_factors:
+    - holidays
+    - oil_prices
+    - promotions
+    - transactions
+
+# MLE-bench metadata
+mle_bench:
+  version: 1.0
+  created: "2025-09-28"
+  author: "Arthur Grebenuk"
+  validation:
+    temporal_split: true
+    split_ratio: 0.9
+    leakage_prevention: "Strict temporal ordering - test dates after training"
+    random_seed: 42

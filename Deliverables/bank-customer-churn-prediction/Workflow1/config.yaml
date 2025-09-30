@@ -1,0 +1,24 @@
+id: bank-customer-churn-prediction
+name: "Bank Customer Churn Prediction Challenge"
+competition_type: simple
+awards_medals: true
+prizes: [0]  # No monetary prize listed
+
+description: description.md
+
+dataset:
+  answers: private/test.csv
+  sample_submission: public/sample_submission.csv
+
+grader:
+  name: roc-auc
+  params: {}
+
+version: 1.0
+
+metadata:
+  participants: 500  # Estimated
+  final_metric: 0.99  # Best GA-XGBoost solution
+  task_type: binary_classification
+  domain: banking
+  difficulty: intermediate
